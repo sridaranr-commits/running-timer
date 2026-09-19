@@ -19,44 +19,45 @@ body{overflow:hidden}.app{height:100%;height:100dvh;max-width:520px;margin:auto;
 .inputs{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{background:var(--card);border:1px solid #222936;border-radius:18px;padding:15px}.field label{display:block;color:var(--muted);font-size:12px;margin-bottom:8px}.field input{width:100%;background:transparent;border:0;outline:0;color:var(--text);font-size:30px;font-weight:700;text-align:center}
 button{border:0;font:inherit;color:var(--text);cursor:pointer}.start{background:var(--accent);color:#07110b;border-radius:18px;height:58px;font-size:18px;font-weight:800;box-shadow:0 10px 30px #35d07f22}
 .running{display:none;flex:1;min-height:0;flex-direction:column}.status{text-align:center;margin:4px 0 5px;font-size:16px;font-weight:800;letter-spacing:1.6px}.status.run{color:var(--accent)}.status.walk{color:var(--walk)}
-.timerCard{background:radial-gradient(circle at 50% 38%,#111a1f 0%,#0c1218 58%,#080d12 100%);border:1px solid #1e2a35;border-radius:30px;padding:10px 8px 12px;text-align:center;position:relative;overflow:hidden;box-shadow:0 18px 50px #0008}.timerCard:before{content:"";position:absolute;inset:-20%;background:radial-gradient(circle at 50% 45%,#35d07f14,transparent 38%);pointer-events:none}.gauge{position:relative;width:min(82vw,355px);height:min(82vw,355px);max-height:43vh;min-height:250px;margin:0 auto}.gaugeTrack,.gaugeArc{position:absolute;inset:4%;border-radius:50%;transform:rotate(-90deg);clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}.gaugeTrack{border:18px solid #202a32;box-shadow:inset 0 0 18px #0008}.gaugeArc{border:18px solid transparent;transition:clip-path .15s linear,transform .15s linear}.gaugeGreen{border-top-color:#35ff4a;border-right-color:#35ff4a;filter:drop-shadow(0 0 8px #35ff4a88);z-index:2}.gaugeRed{border-top-color:#ff3038;border-right-color:#ff3038;filter:drop-shadow(0 0 8px #ff303888);z-index:1}.gaugeCenter{position:absolute;inset:16%;border-radius:50%;background:radial-gradient(circle,#10171d,#080d12);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:3;box-shadow:inset 0 0 28px #000b}.gaugePhaseIcon{font-size:30px;line-height:1;margin-bottom:4px}.gaugePhase{font-size:15px;font-weight:900;letter-spacing:2px;color:#35ff4a}.gaugeTime,.gaugeTimeSmall{font-variant-numeric:tabular-nums;font-weight:900;line-height:1}.gaugeTime{font-size:clamp(42px,12vw,62px);letter-spacing:-2px}.gaugeTimeSmall{font-size:clamp(30px,8vw,42px);margin-top:2px}.gaugeLabel{font-size:10px;color:#9aa7b6;letter-spacing:2px;font-weight:800}.gaugeSeparator{height:1px;width:46%;background:#27333d;margin:9px 0 5px}.cycle{margin-top:5px;color:var(--muted);font-size:12px}.cycle strong{color:var(--text);font-size:14px}.overall{margin-top:7px;text-align:center}.overall .label{color:var(--muted);font-size:10px;letter-spacing:1.4px}.overall .value{font-variant-numeric:tabular-nums;font-size:29px;font-weight:800;margin-top:2px}.actions{margin-top:auto;padding:8px 0 10px;display:flex;align-items:center;justify-content:center;gap:22px}.action{width:58px;height:58px;border-radius:50%;background:#17222d;font-weight:900;font-size:0;border:1px solid #344555;box-shadow:0 8px 22px #0006}.action::after{font-size:22px}.action#pauseBtn::after{content:"Ⅱ"}.action#endBtn::after{content:"■"}.action.end{background:#3a1519;color:#ff5b64;border-color:#ff5b64}.action.resume{background:var(--accent);color:#07110b;border-color:var(--accent)}.action.resume::after{content:"▶"}.note{text-align:center;color:var(--muted);font-size:10px;margin-top:2px}
+.timerCard{background:radial-gradient(circle at 50% 38%,#111a1f 0%,#0c1218 58%,#080d12 100%);border:1px solid #1e2a35;border-radius:30px;padding:10px 8px 12px;text-align:center;position:relative;overflow:hidden;box-shadow:0 18px 50px #0008}.timerCard:before{content:"";position:absolute;inset:-20%;background:radial-gradient(circle at 50% 45%,#35d07f14,transparent 38%);pointer-events:none}.gauge{position:relative;width:min(82vw,355px);height:min(82vw,355px);max-height:43vh;min-height:250px;margin:0 auto}.gaugeProgress{position:absolute;inset:4%;border-radius:50%;background:conic-gradient(from -90deg,#35ff4a 0deg var(--progress,0deg),#ff3038 var(--progress,0deg) 360deg);box-shadow:0 0 20px #0008,0 0 10px #35ff4a22;z-index:1}.gaugeProgress:after{content:"";position:absolute;inset:18px;border-radius:50%;background:#202a32}.gaugeCenter{position:absolute;inset:16%;border-radius:50%;background:radial-gradient(circle,#10171d,#080d12);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:3;box-shadow:inset 0 0 28px #000b}.gaugePhaseIcon{font-size:30px;line-height:1;margin-bottom:4px}.gaugePhase{font-size:15px;font-weight:900;letter-spacing:2px;color:#35ff4a}.gaugeTime,.gaugeTimeSmall{font-variant-numeric:tabular-nums;font-weight:900;line-height:1}.gaugeTime{font-size:clamp(30px,8vw,42px);letter-spacing:-1px}.gaugeTimeSmall{font-size:clamp(48px,14vw,70px);letter-spacing:-2px;margin-top:2px}.gaugeLabel{font-size:10px;color:#9aa7b6;letter-spacing:2px;font-weight:800}.gaugeSeparator{height:1px;width:46%;background:#27333d;margin:9px 0 5px}.runnerHero{text-align:left}.runnerName{font-size:clamp(24px,7vw,36px);font-weight:950;letter-spacing:1px;background:linear-gradient(90deg,#35ff4a,#42d9ff,#c66cff);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}.brand{font-size:10px;letter-spacing:2.4px;color:#91a0b2;margin-top:4px;font-weight:800}.clock{font-size:14px;font-weight:800;color:#dce5ee}.cycle{margin-top:5px;color:var(--muted);font-size:12px}.cycle strong{color:var(--text);font-size:14px}.overall{margin-top:7px;text-align:center}.overall .label{color:var(--muted);font-size:10px;letter-spacing:1.4px}.overall .value{font-variant-numeric:tabular-nums;font-size:29px;font-weight:800;margin-top:2px}.actions{margin-top:auto;padding:8px 0 10px;display:flex;align-items:center;justify-content:center;gap:22px}.action{width:58px;height:58px;border-radius:50%;background:#17222d;font-weight:900;font-size:0;border:1px solid #344555;box-shadow:0 8px 22px #0006}.action::after{font-size:22px}.action#pauseBtn::after{content:"Ⅱ"}.action#endBtn::after{content:"■"}.action.end{background:#3a1519;color:#ff5b64;border-color:#ff5b64}.action.resume{background:var(--accent);color:#07110b;border-color:var(--accent)}.action.resume::after{content:"▶"}.note{text-align:center;color:var(--muted);font-size:10px;margin-top:2px}
 .modal{position:fixed;inset:0;background:#0009;display:none;align-items:center;justify-content:center;padding:25px}.modalCard{width:min(360px,100%);background:#151a24;border:1px solid #2a3140;border-radius:24px;padding:20px;text-align:center}.modalCard h2{margin:0 0 10px}.modalCard p{color:var(--muted);line-height:1.5}.modalCard button{width:100%;height:48px;border-radius:14px;background:var(--accent);color:#07110b;font-weight:800}.settingsCard .inputs{margin-top:12px}.settingsCard .field{padding:12px}.settingsCard .field input{font-size:27px}
-@media(max-height:680px){.header{padding-top:8px}.hero h1{font-size:28px}.timerCard{padding:5px}.gauge{min-height:235px}.gaugeTime{font-size:42px}.gaugeTimeSmall{font-size:29px}.info{margin-top:5px}.actions{padding-bottom:4px}.action{width:52px;height:52px}}
+@media(max-height:680px){.header{padding-top:8px}.hero h1{font-size:28px}.timerCard{padding:5px}.gauge{min-height:235px}.gaugeTime{font-size:30px}.gaugeTimeSmall{font-size:48px}.info{margin-top:5px}.actions{padding-bottom:4px}.action{width:52px;height:52px}}
+
+.settingsScreen{position:fixed;inset:0;z-index:50;background:radial-gradient(circle at 50% 18%,#17231d 0,#0a0e13 48%,#07090d 100%);display:none;flex-direction:column;padding:env(safe-area-inset-top) 18px env(safe-area-inset-bottom)}
+.settingsHeader{display:flex;align-items:center;justify-content:space-between;padding:14px 0 18px}.backBtn{width:auto;height:40px;padding:0 15px;border-radius:14px;background:#18232d;border:1px solid #31404d;color:#fff;font-weight:800}.settingsTitle{font-size:15px;font-weight:900;letter-spacing:2px;margin-right:auto;margin-left:14px}.settingsBody{width:min(500px,100%);margin:auto}.settingsRunner{background:#121a20;border:1px solid #26343f;border-radius:20px;padding:14px;margin-bottom:12px}.settingsRunnerLabel{font-size:11px;color:var(--muted);letter-spacing:1.5px;margin-bottom:6px}.settingsRunner input{width:100%;background:transparent;border:0;outline:0;color:var(--accent);font-size:32px;font-weight:900}.settingsHint{color:var(--muted);font-size:12px;line-height:1.5;text-align:center;margin:14px 12px}.settingsSave,.settingsCancel{width:100%;height:52px;border-radius:16px;font-weight:900}.settingsSave{background:var(--accent);color:#07110b}.settingsCancel{margin-top:10px;background:#252b36;color:#fff}
+.funnySetup{display:flex;gap:8px;justify-content:center;height:112px;overflow:hidden;border-radius:18px;margin-bottom:4px}.funnySetup img{width:48%;height:100%;object-fit:contain;object-position:center;border-radius:18px;border:1px solid #26323c;background:#0c1218}.funnyPhase{height:72px;display:flex;justify-content:center;margin:-2px 0 2px}.funnyPhase img{height:72px;width:125px;object-fit:contain;object-position:center;border-radius:16px;border:1px solid #293640;background:#0c1218;box-shadow:0 8px 24px #0006}
 </style>
 </head>
 <body>
 <div class="app">
   <div class="header">
-  <div class="brand">Running Timer</div>
-  <div class="headerRight"><div class="clock"><span id="runnerNameDisplay">SRIDARAN</span> · <span id="clock">--:--</span></div><button id="settingsBtn" class="settingsBtn" aria-label="Settings">⚙︎</button></div>
+  <div class="runnerHero"><div id="runnerNameDisplay" class="runnerName">SRIDARAN</div><div class="brand">RUNNING TIMER</div></div>
+  <div class="headerRight"><div class="clock"><span id="clock">--:--</span></div><button id="settingsBtn" class="settingsBtn" aria-label="Settings">⚙︎</button></div>
 </div>
 
   <section id="setup" class="setup">
-    <div class="hero"><h1>Ready to Run?</h1><p>Set your interval and start.</p></div>
-    <div class="field"><label>RUNNER NAME</label><input id="settingsRunnerName" type="text" maxlength="30" autocomplete="name"></div>
+    <div class="hero"><div class="funnySetup"><img src="assets/funny-run.jpg" alt="Funny runner"><img src="assets/funny-walk.jpg" alt="Funny walker"></div><h1>Ready to Run?</h1><p>Set your interval and start.</p></div>
     <div class="inputs">
-      <div class="field"><label>RUN TIME · MIN</label><input id="runMin" type="number" min="1" max="180" value="5" inputmode="numeric"></div>
-      <div class="field"><label>WALK TIME · MIN</label><input id="walkMin" type="number" min="1" max="60" value="2" inputmode="numeric"></div>
+      <div class="field"><label>RUN TIME · MIN</label><input id="runMin" type="number" min="1" max="180" value="4" inputmode="numeric"></div>
+      <div class="field"><label>WALK TIME · MIN</label><input id="walkMin" type="number" min="1" max="60" value="1" inputmode="numeric"></div>
     </div>
     <button class="start" id="startBtn">START</button>
     <div class="note">Voice cues: “Start Running” and “Start Walking”</div>
   </section>
 
   <section id="running" class="running">
-    <div id="status" class="status run">RUNNING</div>
+    <div id="status" class="status run">RUNNING</div><div class="funnyPhase"><img id="phaseImage" src="assets/funny-run.jpg" alt="Running"></div>
     <div class="timerCard">
       <div class="gauge">
-        <div class="gaugeTrack"></div>
-        <div id="gaugeGreen" class="gaugeArc gaugeGreen"></div>
-        <div id="gaugeRed" class="gaugeArc gaugeRed"></div>
+        <div id="gaugeProgress" class="gaugeProgress"></div>
         <div class="gaugeCenter">
           <div class="gaugePhaseIcon" id="phaseIcon">🏃</div>
           <div id="gaugePhase" class="gaugePhase">RUNNING</div>
-          <div class="gaugeTime" id="elapsed">00:00</div>
-          <div class="gaugeLabel">ELAPSED</div>
-          <div class="gaugeSeparator"></div>
           <div class="gaugeTimeSmall" id="remaining">05:00</div>
           <div class="gaugeLabel">REMAINING</div>
+          <div class="gaugeSeparator"></div>
+          <div class="gaugeTime" id="elapsed">00:00</div>
+          <div class="gaugeLabel">ELAPSED</div>
         </div>
       </div>
       <div class="cycle">CYCLE <strong id="cycleText">RUN 00:00 / 05:00</strong></div>
@@ -73,18 +74,25 @@ button{border:0;font:inherit;color:var(--text);cursor:pointer}.start{background:
   </section>
 </div>
 
-<div id="settingsModal" class="modal">
-  <div class="modalCard settingsCard">
-    <h2>Timer Settings</h2>
-    <p>Changes apply immediately to the current workout and future cycles.</p>
+<section id="settingsScreen" class="settingsScreen">
+  <div class="settingsHeader">
+    <button id="backSettings" class="backBtn">‹ BACK</button>
+    <div class="settingsTitle">SETTINGS</div>
+  </div>
+  <div class="settingsBody">
+    <div class="settingsRunner">
+      <div class="settingsRunnerLabel">RUNNER</div>
+      <input id="settingsRunnerName" type="text" maxlength="30" autocomplete="name" placeholder="Your name">
+    </div>
     <div class="inputs">
       <div class="field"><label>RUN TIME · MIN</label><input id="settingsRunMin" type="number" min="1" max="180" inputmode="numeric"></div>
       <div class="field"><label>WALK TIME · MIN</label><input id="settingsWalkMin" type="number" min="1" max="60" inputmode="numeric"></div>
     </div>
-    <button id="saveSettings" style="margin-top:12px">SAVE SETTINGS</button>
-    <button id="cancelSettings" style="margin-top:10px;background:#252b36;color:#fff">CANCEL</button>
+    <p class="settingsHint">Changes apply immediately during a workout and are remembered for your next run.</p>
+    <button id="saveSettings" class="settingsSave">SAVE SETTINGS</button>
+    <button id="cancelSettings" class="settingsCancel">CANCEL</button>
   </div>
-</div>
+</section>
 
 <div id="endConfirm" class="modal">
   <div class="modalCard"><h2>End this run?</h2><p>Your workout timer will stop.</p>
@@ -99,46 +107,28 @@ button{border:0;font:inherit;color:var(--text);cursor:pointer}.start{background:
 
 <script>
 const $=id=>document.getElementById(id);
-let state={active:false,paused:false,phase:"run",runMs:300000,walkMs:120000,phaseElapsed:0,totalActive:0,phaseStartedAt:0,startedAt:0,lastTick:0,cycle:1,lastTotalAnnouncedMinute:0};
+let state={active:false,paused:false,phase:"run",runMs:240000,walkMs:60000,phaseElapsed:0,totalActive:0,phaseStartedAt:0,startedAt:0,lastTick:0,cycle:1,lastTotalAnnouncedMinute:0};
 let timer=null;
 
 function fmt(ms){ms=Math.max(0,Math.floor(ms/1000));const h=Math.floor(ms/3600),m=Math.floor(ms%3600/60),s=ms%60;return h?`${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`:`${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`}
-function clockFmt(d){return d.toLocaleTimeString([], {hour:"2-digit",minute:"2-digit",second:"2-digit"})}
+function clockFmt(d){return d.toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"})}
 let transitionSpeakingUntil=0;
-function speak(text,priority=false){
+function speak(text,priority=false,voiceRole="male"){
   try{
     const isTransition=(text==="Start Running"||text==="Start Walking");
     if(isTransition || priority) transitionSpeakingUntil=Date.now()+2600;
     const spokenText=personalized(text);
     if(!isTransition && Date.now()<transitionSpeakingUntil) return;
     window.speechSynthesis.cancel();
-    const u=new SpeechSynthesisUtterance(text);
+    const u=new SpeechSynthesisUtterance(spokenText);
     const voices=window.speechSynthesis.getVoices();
-    const male=voices.find(v=>/Daniel|Alex|Oliver|Arthur|Rishi|Aaron/i.test(v.name) && /^en/i.test(v.lang));
-    if(male) u.voice=male;
+    const female=voices.find(v=>/Samantha|Karen|Moira|Tessa|Victoria|Google UK English Female|Female/i.test(v.name) && /^en/i.test(v.lang));
+    const male=voices.find(v=>/Daniel|Alex|Oliver|Arthur|Rishi|Aaron|Fred/i.test(v.name) && /^en/i.test(v.lang));
+    if(voiceRole==="female" && female) u.voice=female;
+    else if(male) u.voice=male;
     u.rate=.88; u.pitch=.82; u.volume=1;
-    u.text=spokenText; window.speechSynthesis.speak(u);
+    window.speechSynthesis.speak(u);
   }catch(e){}}
-function updateClock(){ $("clock").textContent=clockFmt(new Date()); if(state.active){$("current").textContent=clockFmt(new Date())} }
-setInterval(updateClock,500); updateClock();
-
-function render(){
-  const phaseTotal=state.phase==="run"?state.runMs:state.walkMs;
-  const ratio=Math.min(1,Math.max(0,state.phaseElapsed/phaseTotal));
-  $("status").textContent=state.phase==="run"?"RUNNING":"WALKING";
-  $("status").className="status "+(state.phase==="run"?"run":"walk");
-  $("gaugePhase").textContent=state.phase==="run"?"RUNNING":"WALKING";
-  $("gaugePhase").style.color=state.phase==="run"?"#35ff4a":"#5aa7ff";
-  $("phaseIcon").textContent=state.phase==="run"?"🏃":"🚶";
-  $("elapsed").textContent=fmt(state.phaseElapsed);
-  $("remaining").textContent=fmt(Math.max(0,phaseTotal-state.phaseElapsed));
-  $("cycleText").textContent=(state.phase==="run"?"RUN ":"WALK ")+fmt(state.phaseElapsed)+" / "+fmt(phaseTotal);
-  const deg=ratio*360;
-  $("gaugeGreen").style.clipPath=`polygon(50% 50%, 50% 0%, ${50+50*Math.cos((deg-90)*Math.PI/180)}% ${50+50*Math.sin((deg-90)*Math.PI/180)}%, 50% 50%)`;
-  $("gaugeRed").style.clipPath=`polygon(50% 50%, ${50+50*Math.cos((deg-90)*Math.PI/180)}% ${50+50*Math.sin((deg-90)*Math.PI/180)}%, 100% 0%, 100% 100%, 0 100%, 0 0%, 50% 0%, 50% 50%)`;
-  $("overall").textContent=fmt(state.totalActive);
-  $("pauseBtn").className="action "+(state.paused?"resume":"");
-}
 
 function tick(now=performance.now()){
   if(!state.active){return}
@@ -170,7 +160,7 @@ function tick(now=performance.now()){
       state.phaseElapsed=overflow;
       state.lastTick=performance.now();
       haptic("transition");
-      speak(state.phase==="run"?"Start Running":"Start Walking",true);
+      speak(state.phase==="run"?"Start Running":"Start Walking",true,state.phase==="run"?"male":"female");
     }
     render();
   }
@@ -195,17 +185,18 @@ function personalized(text){
 updateRunnerNameDisplay();
 
 function openSettings(){
-  $("settingsRunnerName").value=getRunnerName();
-  $("settingsRunMin").value=Math.round(state.active?state.runMs/60000:Number($("runMin").value)||5);
-  $("settingsWalkMin").value=Math.round(state.active?state.walkMs/60000:Number($("walkMin").value)||2);
-  $("settingsModal").style.display="flex";
+  $("settingsRunnerName").value=localStorage.getItem("runningTimerRunnerName") || "SRIDARAN";
+  $("settingsRunMin").value=Math.round(state.active?state.runMs/60000:Number($("runMin").value)||4);
+  $("settingsWalkMin").value=Math.round(state.active?state.walkMs/60000:Number($("walkMin").value)||1);
+  document.querySelector(".app").style.display="none";
+  $("settingsScreen").style.display="flex";
 }
 function applySettings(){
   const runnerName=($("settingsRunnerName").value||"SRIDARAN").trim().slice(0,30) || "SRIDARAN";
   localStorage.setItem("runningTimerRunnerName",runnerName);
   updateRunnerNameDisplay();
-  const r=Math.min(180,Math.max(1,Number($("settingsRunMin").value)||5));
-  const w=Math.min(60,Math.max(1,Number($("settingsWalkMin").value)||2));
+  const r=Math.min(180,Math.max(1,Number($("settingsRunMin").value)||4));
+  const w=Math.min(60,Math.max(1,Number($("settingsWalkMin").value)||1));
   $("runMin").value=r; $("walkMin").value=w;
   localStorage.setItem("runningTimerSettings",JSON.stringify({run:r,walk:w}));
   if(state.active){
@@ -218,21 +209,27 @@ function applySettings(){
       state.cycle += state.phase==="run"?1:0;
       state.phaseElapsed=0;
       state.lastTick=performance.now();
-      haptic("transition"); speak(state.phase==="run"?"Start Running":"Start Walking",true);
+      haptic("transition"); speak(state.phase==="run"?"Start Running":"Start Walking",true,state.phase==="run"?"male":"female");
     }
     render();
   }
-  $("settingsModal").style.display="none";
+  $("settingsScreen").style.display="none";
+  document.querySelector(".app").style.display="flex";
+}
+function closeSettings(){
+  $("settingsScreen").style.display="none";
+  document.querySelector(".app").style.display="flex";
 }
 $("settingsBtn").onclick=openSettings;
-$("cancelSettings").onclick=()=>$("settingsModal").style.display="none";
+$("backSettings").onclick=closeSettings;
+$("cancelSettings").onclick=closeSettings;
 $("saveSettings").onclick=applySettings;
 
 $("startBtn").onclick=()=>{
-  const r=Math.max(1,Number($("runMin").value)||5), w=Math.max(1,Number($("walkMin").value)||2);
+  const r=Math.max(1,Number($("runMin").value)||4), w=Math.max(1,Number($("walkMin").value)||1);
   state={active:true,paused:false,phase:"run",runMs:r*60000,walkMs:w*60000,phaseElapsed:0,totalActive:0,phaseStartedAt:performance.now(),startedAt:new Date(),lastTick:performance.now(),cycle:1,lastTotalAnnouncedMinute:0}; localStorage.setItem("runningTimerSettings",JSON.stringify({run:r,walk:w}));
   $("setup").style.display="none"; $("running").style.display="flex"; $("started").textContent=clockFmt(state.startedAt);
-  render(); haptic("transition"); speak("Start Running",true); keepScreenAwake(); cancelAnimationFrame(timer); timer=requestAnimationFrame(tick);
+  render(); haptic("transition"); speak("Start Running",true,"male"); keepScreenAwake(); cancelAnimationFrame(timer); timer=requestAnimationFrame(tick);
 };
 
 $("pauseBtn").onclick=()=>{
@@ -248,11 +245,11 @@ $("endBtn").onclick=()=>{
 $("cancelEnd").onclick=()=>{$("endConfirm").style.display="none"};
 $("confirmEnd").onclick=()=>{
   state.active=false; cancelAnimationFrame(timer); releaseScreenAwake(); haptic("end"); 
-  speak("Run Ended"); 
+  speak("Run Ended",false,"male"); 
   setTimeout(()=>{
     const total=fmt(state.totalActive);
-    speak("Overall Total Time "+total+" . Congratulations!",true);
-    setTimeout(()=>speak("Do not forget to take a photo",true),3000);
+    speak("Overall Total Time "+total+" . Congratulations!",true,"male");
+    setTimeout(()=>speak("Do not forget to take a photo",true,"female"),3000);
   },2600);
   $("endConfirm").style.display="none";
   $("summary").innerHTML=`Overall active time: <strong>${fmt(state.totalActive)}</strong><br>Run/Walk intervals completed: <strong>${Math.max(0,state.cycle-(state.phase==="run"?1:0))}</strong>`;
@@ -285,14 +282,14 @@ document.addEventListener("visibilitychange",()=>{
   if(!state.active)return;
   if(document.visibilityState==="hidden"){
     // Best-effort only: iOS may suspend speech immediately after backgrounding.
-    haptic("transition"); speak("Screen Minimised");
+    haptic("transition"); speak("Screen Minimised",true,"female");
   }else{
     state.lastTick=performance.now();
     keepScreenAwake();
   }
 });
 window.addEventListener("pagehide",()=>{
-  if(state.active) haptic("transition"); speak("Screen Minimised");
+  if(state.active){ haptic("transition"); speak("Screen Minimised",true,"female"); }
 });
 
 if("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(()=>{});
