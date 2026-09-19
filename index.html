@@ -11,21 +11,26 @@
 <link rel="apple-touch-icon" href="icons/icon-180.png">
 <title>Running Timer</title>
 <style>
-:root{--bg:#080a0f;--card:#121620;--muted:#8f98a8;--text:#f5f7fb;--accent:#35d07f;--walk:#5aa7ff;--danger:#ff5b64}
+ :root{--bg:#0d1115;--card:#151b20;--card2:#1b2329;--text:#e9e5dc;--muted:#9ba29e;--accent:#7fa98a;--green:#6f9f7b;--red:#9d5a5a;--blue:#718aa3;--line:#2b343a;--shadow:0 10px 30px #0008}
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif}
 body{overflow:hidden}.app{height:100%;height:100dvh;max-width:520px;margin:auto;padding:env(safe-area-inset-top) 18px env(safe-area-inset-bottom);display:flex;flex-direction:column}
 .header{display:flex;justify-content:space-between;align-items:center;padding:14px 2px 8px}.headerRight{display:flex;align-items:center;gap:9px}.settingsBtn{width:34px;height:34px;border-radius:50%;background:#17222d;border:1px solid #344555;color:#aebbd0;font-size:21px;line-height:1;display:flex;align-items:center;justify-content:center}.settingsBtn:active{transform:scale(.94);background:#243443}.brand{font-size:18px;font-weight:750;letter-spacing:.2px}.clock{font-variant-numeric:tabular-nums;color:var(--muted);font-size:13px}
 .setup{flex:1;display:flex;flex-direction:column;justify-content:center;gap:18px}.hero{text-align:center;margin-bottom:8px}.hero h1{font-size:34px;margin:0 0 8px}.hero p{margin:0;color:var(--muted)}
 .inputs{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{background:var(--card);border:1px solid #222936;border-radius:18px;padding:15px}.field label{display:block;color:var(--muted);font-size:12px;margin-bottom:8px}.field input{width:100%;background:transparent;border:0;outline:0;color:var(--text);font-size:30px;font-weight:700;text-align:center}
-button{border:0;font:inherit;color:var(--text);cursor:pointer}.start{background:var(--accent);color:#07110b;border-radius:18px;height:58px;font-size:18px;font-weight:800;box-shadow:0 10px 30px #35d07f22}
+button{border:0;font:inherit;color:var(--text);cursor:pointer}.start{background:var(--accent);color:#101512;border-radius:18px;height:58px;font-size:18px;font-weight:800;box-shadow:0 10px 30px #35d07f22}
 .running{display:none;flex:1;min-height:0;flex-direction:column}.status{text-align:center;margin:4px 0 5px;font-size:16px;font-weight:800;letter-spacing:1.6px}.status.run{color:var(--accent)}.status.walk{color:var(--walk)}
-.timerCard{background:radial-gradient(circle at 50% 38%,#111a1f 0%,#0c1218 58%,#080d12 100%);border:1px solid #1e2a35;border-radius:30px;padding:10px 8px 12px;text-align:center;position:relative;overflow:hidden;box-shadow:0 18px 50px #0008}.timerCard:before{content:"";position:absolute;inset:-20%;background:radial-gradient(circle at 50% 45%,#35d07f14,transparent 38%);pointer-events:none}.gauge{position:relative;width:min(82vw,355px);height:min(82vw,355px);max-height:43vh;min-height:250px;margin:0 auto}.gaugeProgress{position:absolute;inset:4%;border-radius:50%;background:conic-gradient(from -90deg,#35ff4a 0deg var(--progress,0deg),#ff3038 var(--progress,0deg) 360deg);box-shadow:0 0 20px #0008,0 0 10px #35ff4a22;z-index:1}.gaugeProgress:after{content:"";position:absolute;inset:18px;border-radius:50%;background:#202a32}.gaugeCenter{position:absolute;inset:16%;border-radius:50%;background:radial-gradient(circle,#10171d,#080d12);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:3;box-shadow:inset 0 0 28px #000b}.gaugePhaseIcon{font-size:30px;line-height:1;margin-bottom:4px}.gaugePhase{font-size:15px;font-weight:900;letter-spacing:2px;color:#35ff4a}.gaugeTime,.gaugeTimeSmall{font-variant-numeric:tabular-nums;font-weight:900;line-height:1}.gaugeTime{font-size:clamp(30px,8vw,42px);letter-spacing:-1px}.gaugeTimeSmall{font-size:clamp(48px,14vw,70px);letter-spacing:-2px;margin-top:2px}.gaugeLabel{font-size:10px;color:#9aa7b6;letter-spacing:2px;font-weight:800}.gaugeSeparator{height:1px;width:46%;background:#27333d;margin:9px 0 5px}.runnerHero{text-align:left}.runnerName{font-size:clamp(24px,7vw,36px);font-weight:950;letter-spacing:1px;background:linear-gradient(90deg,#35ff4a,#42d9ff,#c66cff);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}.brand{font-size:10px;letter-spacing:2.4px;color:#91a0b2;margin-top:4px;font-weight:800}.clock{font-size:14px;font-weight:800;color:#dce5ee}.cycle{margin-top:5px;color:var(--muted);font-size:12px}.cycle strong{color:var(--text);font-size:14px}.overall{margin-top:7px;text-align:center}.overall .label{color:var(--muted);font-size:10px;letter-spacing:1.4px}.overall .value{font-variant-numeric:tabular-nums;font-size:29px;font-weight:800;margin-top:2px}.actions{margin-top:auto;padding:8px 0 10px;display:flex;align-items:center;justify-content:center;gap:22px}.action{width:58px;height:58px;border-radius:50%;background:#17222d;font-weight:900;font-size:0;border:1px solid #344555;box-shadow:0 8px 22px #0006}.action::after{font-size:22px}.action#pauseBtn::after{content:"Ⅱ"}.action#endBtn::after{content:"■"}.action.end{background:#3a1519;color:#ff5b64;border-color:#ff5b64}.action.resume{background:var(--accent);color:#07110b;border-color:var(--accent)}.action.resume::after{content:"▶"}.note{text-align:center;color:var(--muted);font-size:10px;margin-top:2px}
-.modal{position:fixed;inset:0;background:#0009;display:none;align-items:center;justify-content:center;padding:25px}.modalCard{width:min(360px,100%);background:#151a24;border:1px solid #2a3140;border-radius:24px;padding:20px;text-align:center}.modalCard h2{margin:0 0 10px}.modalCard p{color:var(--muted);line-height:1.5}.modalCard button{width:100%;height:48px;border-radius:14px;background:var(--accent);color:#07110b;font-weight:800}.settingsCard .inputs{margin-top:12px}.settingsCard .field{padding:12px}.settingsCard .field input{font-size:27px}
+.timerCard{background:radial-gradient(circle at 50% 38%,#111a1f 0%,#0c1218 58%,#080d12 100%);border:1px solid #1e2a35;border-radius:30px;padding:10px 8px 12px;text-align:center;position:relative;overflow:hidden;box-shadow:0 18px 50px #0008}.timerCard:before{content:"";position:absolute;inset:-20%;background:radial-gradient(circle at 50% 45%,#35d07f14,transparent 38%);pointer-events:none}.gauge{position:relative;width:min(82vw,355px);height:min(82vw,355px);max-height:43vh;min-height:250px;margin:0 auto}.gaugeProgress{position:absolute;inset:4%;border-radius:50%;background:conic-gradient(from -90deg,#6f9f7b 0deg var(--progress,0deg),#ff3038 var(--progress,0deg) 360deg);box-shadow:0 0 20px #0008,0 0 10px #6f9f7b22;z-index:1}.gaugeProgress:after{content:"";position:absolute;inset:18px;border-radius:50%;background:#202a32}.gaugeCenter{position:absolute;inset:16%;border-radius:50%;background:radial-gradient(circle,#10171d,#080d12);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:3;box-shadow:inset 0 0 28px #000b}.gaugePhaseIcon{font-size:30px;line-height:1;margin-bottom:4px}.gaugePhase{font-size:15px;font-weight:900;letter-spacing:2px;color:#6f9f7b}.gaugeTime,.gaugeTimeSmall{font-variant-numeric:tabular-nums;font-weight:900;line-height:1}.gaugeTime{font-size:clamp(30px,8vw,42px);letter-spacing:-1px}.gaugeTimeSmall{font-size:clamp(48px,14vw,70px);letter-spacing:-2px;margin-top:2px}.gaugeLabel{font-size:10px;color:#9aa7b6;letter-spacing:2px;font-weight:800}.gaugeSeparator{height:1px;width:46%;background:#27333d;margin:9px 0 5px}.runnerHero{text-align:left}.runnerName{font-size:clamp(24px,7vw,36px);font-weight:950;letter-spacing:1px;background:linear-gradient(90deg,#6f9f7b,#42d9ff,#c66cff);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}.brand{font-size:10px;letter-spacing:2.4px;color:#91a0b2;margin-top:4px;font-weight:800}.clock{font-size:14px;font-weight:800;color:#dce5ee}.cycle{margin-top:5px;color:var(--muted);font-size:12px}.cycle strong{color:var(--text);font-size:14px}.overall{margin-top:7px;text-align:center}.overall .label{color:var(--muted);font-size:10px;letter-spacing:1.4px}.overall .value{font-variant-numeric:tabular-nums;font-size:29px;font-weight:800;margin-top:2px}.actions{margin-top:auto;padding:8px 0 10px;display:flex;align-items:center;justify-content:center;gap:22px}.action{width:58px;height:58px;border-radius:50%;background:#17222d;font-weight:900;font-size:0;border:1px solid #344555;box-shadow:0 8px 22px #0006}.action::after{font-size:22px}.action#pauseBtn::after{content:"Ⅱ"}.action#endBtn::after{content:"■"}.action.end{background:#3a1519;color:#ff5b64;border-color:#ff5b64}.action.resume{background:var(--accent);color:#101512;border-color:var(--accent)}.action.resume::after{content:"▶"}.note{text-align:center;color:var(--muted);font-size:10px;margin-top:2px}
+.modal{position:fixed;inset:0;background:#0009;display:none;align-items:center;justify-content:center;padding:25px}.modalCard{width:min(360px,100%);background:#151a24;border:1px solid #2a3140;border-radius:24px;padding:20px;text-align:center}.modalCard h2{margin:0 0 10px}.modalCard p{color:var(--muted);line-height:1.5}.modalCard button{width:100%;height:48px;border-radius:14px;background:var(--accent);color:#101512;font-weight:800}.settingsCard .inputs{margin-top:12px}.settingsCard .field{padding:12px}.settingsCard .field input{font-size:27px}
 @media(max-height:680px){.header{padding-top:8px}.hero h1{font-size:28px}.timerCard{padding:5px}.gauge{min-height:235px}.gaugeTime{font-size:30px}.gaugeTimeSmall{font-size:48px}.info{margin-top:5px}.actions{padding-bottom:4px}.action{width:52px;height:52px}}
 
 .settingsScreen{position:fixed;inset:0;z-index:50;background:radial-gradient(circle at 50% 18%,#17231d 0,#0a0e13 48%,#07090d 100%);display:none;flex-direction:column;padding:env(safe-area-inset-top) 18px env(safe-area-inset-bottom)}
-.settingsHeader{display:flex;align-items:center;justify-content:space-between;padding:14px 0 18px}.backBtn{width:auto;height:40px;padding:0 15px;border-radius:14px;background:#18232d;border:1px solid #31404d;color:#fff;font-weight:800}.settingsTitle{font-size:15px;font-weight:900;letter-spacing:2px;margin-right:auto;margin-left:14px}.settingsBody{width:min(500px,100%);margin:auto}.settingsRunner{background:#121a20;border:1px solid #26343f;border-radius:20px;padding:14px;margin-bottom:12px}.settingsRunnerLabel{font-size:11px;color:var(--muted);letter-spacing:1.5px;margin-bottom:6px}.settingsRunner input{width:100%;background:transparent;border:0;outline:0;color:var(--accent);font-size:32px;font-weight:900}.settingsHint{color:var(--muted);font-size:12px;line-height:1.5;text-align:center;margin:14px 12px}.settingsSave,.settingsCancel{width:100%;height:52px;border-radius:16px;font-weight:900}.settingsSave{background:var(--accent);color:#07110b}.settingsCancel{margin-top:10px;background:#252b36;color:#fff}
+.settingsHeader{display:flex;align-items:center;justify-content:space-between;padding:14px 0 18px}.backBtn{width:auto;height:40px;padding:0 15px;border-radius:14px;background:#18232d;border:1px solid #31404d;color:#e9e5dc;font-weight:800}.settingsTitle{font-size:15px;font-weight:900;letter-spacing:2px;margin-right:auto;margin-left:14px}.settingsBody{width:min(500px,100%);margin:auto}.settingsRunner{background:#121a20;border:1px solid #26343f;border-radius:20px;padding:14px;margin-bottom:12px}.settingsRunnerLabel{font-size:11px;color:var(--muted);letter-spacing:1.5px;margin-bottom:6px}.settingsRunner input{width:100%;background:transparent;border:0;outline:0;color:var(--accent);font-size:34px;font-weight:900;letter-spacing:.4px}.settingsHint{color:var(--muted);font-size:12px;line-height:1.5;text-align:center;margin:14px 12px}.settingsSave,.settingsCancel{width:100%;height:52px;border-radius:16px;font-weight:900}.settingsSave{background:var(--accent);color:#101512}.settingsCancel{margin-top:10px;background:#252b36;color:#e9e5dc}
 .funnySetup{display:flex;gap:8px;justify-content:center;height:112px;overflow:hidden;border-radius:18px;margin-bottom:4px}.funnySetup img{width:48%;height:100%;object-fit:contain;object-position:center;border-radius:18px;border:1px solid #26323c;background:#0c1218}.funnyPhase{height:72px;display:flex;justify-content:center;margin:-2px 0 2px}.funnyPhase img{height:72px;width:125px;object-fit:contain;object-position:center;border-radius:16px;border:1px solid #293640;background:#0c1218;box-shadow:0 8px 24px #0006}
+
+.endConfirmScreen{position:fixed;inset:0;z-index:100;background:rgba(7,10,13,.98);display:none;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(12px)}
+.endConfirmCard{width:min(390px,100%);background:#151b20;border:1px solid #344047;border-radius:24px;padding:28px 22px;box-shadow:0 24px 70px #000c;text-align:center}
+.endConfirmCard h2{margin:0 0 8px;font-size:28px;color:#e9e5dc}.endConfirmCard p{margin:0 0 22px;color:#9ba29e;font-size:14px}
+.endConfirmActions{display:flex;gap:10px}.endConfirmActions button{flex:1;height:52px;border-radius:16px;font-weight:900}.confirmEnd{background:#9d5a5a;color:#fff}.cancelEnd{background:#252d33;color:#e9e5dc}
 </style>
 </head>
 <body>
@@ -74,6 +79,16 @@ button{border:0;font:inherit;color:var(--text);cursor:pointer}.start{background:
   </section>
 </div>
 
+<section id="endConfirmScreen" class="endConfirmScreen" aria-hidden="true">
+  <div class="endConfirmCard">
+    <h2>End Run?</h2>
+    <p>Your current Run/Walk session will be finished.</p>
+    <div class="endConfirmActions">
+      <button id="cancelEnd" class="cancelEnd">CANCEL</button>
+      <button id="confirmEnd" class="confirmEnd">END RUN</button>
+    </div>
+  </div>
+</section>
 <section id="settingsScreen" class="settingsScreen">
   <div class="settingsHeader">
     <button id="backSettings" class="backBtn">‹ BACK</button>
@@ -96,8 +111,8 @@ button{border:0;font:inherit;color:var(--text);cursor:pointer}.start{background:
 
 <div id="endConfirm" class="modal">
   <div class="modalCard"><h2>End this run?</h2><p>Your workout timer will stop.</p>
-    <button id="cancelEnd" style="background:#252b36;color:#fff">CANCEL</button>
-    <button id="confirmEnd" style="margin-top:10px;background:#ff5b64;color:#fff">END RUN</button>
+    <button id="cancelEnd" style="background:#252b36;color:#e9e5dc">CANCEL</button>
+    <button id="confirmEnd" style="margin-top:10px;background:#ff5b64;color:#e9e5dc">END RUN</button>
   </div>
 </div>
 
@@ -122,11 +137,13 @@ function speak(text,priority=false,voiceRole="male"){
     window.speechSynthesis.cancel();
     const u=new SpeechSynthesisUtterance(spokenText);
     const voices=window.speechSynthesis.getVoices();
+    const indian=voices.filter(v=>/^en-IN$/i.test(v.lang) || /India/i.test(v.name));
     const english=voices.filter(v=>/^en/i.test(v.lang));
-    const female=english.find(v=>/Samantha|Karen|Moira|Tessa|Victoria|Zira|Female/i.test(v.name));
-    const male=english.find(v=>/Daniel|Alex|Oliver|Arthur|Rishi|Aaron|Fred|Male/i.test(v.name));
+    const female=indian.find(v=>/female|veena|heera|siri/i.test(v.name)) || indian[0] || english.find(v=>/female|samantha|karen|moira|tessa|victoria|zira/i.test(v.name));
+    const male=indian.find(v=>/male|rishi|siri/i.test(v.name)) || indian[0] || english.find(v=>/male|daniel|alex|oliver|arthur|rishi|aaron|fred/i.test(v.name));
     if(voiceRole==="female" && female) u.voice=female;
     else if(voiceRole==="male" && male) u.voice=male;
+    u.lang=(u.voice && u.voice.lang) || "en-IN";
     u.rate=1; u.pitch=1; u.volume=1;
     window.speechSynthesis.speak(u);
   }catch(e){}}
@@ -140,7 +157,7 @@ function render(){
   $("status").textContent=state.phase==="run"?"RUNNING":"WALKING";
   $("status").className="status "+(state.phase==="run"?"run":"walk");
   $("gaugePhase").textContent=state.phase==="run"?"RUNNING":"WALKING";
-  $("gaugePhase").style.color=state.phase==="run"?"#35ff4a":"#5aa7ff";
+  $("gaugePhase").style.color=state.phase==="run"?"#6f9f7b":"#718aa3";
   $("phaseIcon").textContent=state.phase==="run"?"🏃":"🚶";
   $("phaseImage").src=state.phase==="run"?"assets/funny-run.jpg":"assets/funny-walk.jpg";
 
@@ -200,6 +217,13 @@ if(savedSettings){
   if(savedSettings.run) $("runMin").value=savedSettings.run;
   if(savedSettings.walk) $("walkMin").value=savedSettings.walk;
 }
+function spokenRunnerName(){
+  const n=getRunnerName().trim();
+  if(!n) return "Sridaran";
+  // Preserve normal names as entered; for all-caps names, convert to natural title case for speech.
+  if(n===n.toUpperCase() && /[A-Z]/.test(n)) return n.toLowerCase().replace(/\\b\\w/g,c=>c.toUpperCase());
+  return n;
+}
 function getRunnerName(){
   return localStorage.getItem("runningTimerRunnerName") || "SRIDARAN";
 }
@@ -207,7 +231,7 @@ function updateRunnerNameDisplay(){
   $("runnerNameDisplay").textContent=getRunnerName();
 }
 function personalized(text){
-  return text+" "+getRunnerName();
+  return text+" "+spokenRunnerName();
 }
 updateRunnerNameDisplay();
 render();
