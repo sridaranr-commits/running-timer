@@ -21,7 +21,7 @@ button{border:0;font:inherit;color:var(--text);cursor:pointer}.start{background:
 .running{display:none;flex:1;min-height:0;flex-direction:column}.status{text-align:center;margin:4px 0 5px;font-size:16px;font-weight:800;letter-spacing:1.6px}.status.run{color:var(--accent)}.status.walk{color:var(--walk)}
 .timerCard{background:linear-gradient(145deg,#151a24,#0e1219);border:1px solid #232a38;border-radius:28px;padding:17px 14px 15px;text-align:center;position:relative;overflow:hidden}
 .timerCard:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 15%,#ffffff0b,transparent 42%);pointer-events:none}
-.timerLabels{display:grid;grid-template-columns:1fr 1fr;color:var(--muted);font-size:11px;font-weight:700;letter-spacing:1px}.bigTimers{display:grid;grid-template-columns:1fr 1fr;align-items:center;margin:2px 0 3px}.big{font-variant-numeric:tabular-nums;font-size:42px;line-height:1.05;font-weight:750;letter-spacing:-1.5px}.remain{color:#fff}.divider{height:42px;width:1px;background:#2a3140;justify-self:center}
+.timerLabels{display:grid;grid-template-columns:1fr 1fr;color:var(--muted);font-size:11px;font-weight:700;letter-spacing:1px}.bigTimers{display:grid;grid-template-columns:1fr 1fr;align-items:center;margin:2px 0 3px}.big{font-variant-numeric:tabular-nums;font-size:42px;line-height:1.05;font-weight:750;letter-spacing:-1.5px}.remain{color:#fff}.divider{height:48px;width:2px;background:linear-gradient(#ff7a18,#5aa7ff);justify-self:center;border-radius:2px}.progress{height:8px;margin:12px 8px 0;background:#252b36;border-radius:99px;overflow:hidden}.progress #progressBar{height:100%;width:0;background:linear-gradient(90deg,#ff7a18,#5aa7ff);border-radius:99px;transition:width .15s linear}
 .cycle{margin-top:10px;color:var(--muted);font-size:12px}.cycle strong{color:var(--text);font-size:14px}
 .overall{margin-top:10px;text-align:center}.overall .label{color:var(--muted);font-size:11px;letter-spacing:1px}.overall .value{font-variant-numeric:tabular-nums;font-size:32px;font-weight:750;margin-top:2px}.overall .sub{color:var(--muted);font-size:11px;margin-top:1px}
 .info{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}.infoBox{background:var(--card);border:1px solid #202633;border-radius:15px;padding:9px 11px}.infoBox .l{color:var(--muted);font-size:10px}.infoBox .v{font-variant-numeric:tabular-nums;font-size:14px;font-weight:650;margin-top:3px}
@@ -33,7 +33,7 @@ button{border:0;font:inherit;color:var(--text);cursor:pointer}.start{background:
 </head>
 <body>
 <div class="app">
-  <div class="header"><div class="brand">Running Timer</div><div id="clock" class="clock">--:--</div></div>
+  <div class="header"><div class="brand">Running Timer</div><div class="clock">SRIDARAN · <span id="clock">--:--</span></div></div>
 
   <section id="setup" class="setup">
     <div class="hero"><h1>Ready to Run?</h1><p>Set your interval and start.</p></div>
@@ -51,6 +51,7 @@ button{border:0;font:inherit;color:var(--text);cursor:pointer}.start{background:
       <div class="timerLabels"><span>ELAPSED</span><span>REMAINING</span></div>
       <div class="bigTimers"><div id="elapsed" class="big">00:00</div><div class="divider"></div><div id="remaining" class="big remain">05:00</div></div>
       <div class="cycle">CURRENT CYCLE · <strong id="cycleText">RUN 00:00 / 05:00</strong></div>
+      <div class="progress"><div id="progressBar"></div></div>
       <div class="overall"><div class="label">OVERALL TOTAL</div><div id="overall" class="value">00:00</div><div class="sub">RUN + WALK</div></div>
     </div>
     <div class="info">
@@ -62,6 +63,13 @@ button{border:0;font:inherit;color:var(--text);cursor:pointer}.start{background:
       <button id="endBtn" class="action end">■ END</button>
     </div>
   </section>
+</div>
+
+<div id="endConfirm" class="modal">
+  <div class="modalCard"><h2>End this run?</h2><p>Your workout timer will stop.</p>
+    <button id="cancelEnd" style="background:#252b36;color:#fff">CANCEL</button>
+    <button id="confirmEnd" style="margin-top:10px;background:#ff5b64;color:#fff">END RUN</button>
+  </div>
 </div>
 
 <div id="modal" class="modal">
@@ -85,7 +93,7 @@ function render(){
   $("status").className="status "+(state.phase==="run"?"run":"walk");
   $("elapsed").textContent=fmt(state.phaseElapsed);
   $("remaining").textContent=fmt(Math.max(0,phaseTotal-state.phaseElapsed));
-  $("cycleText").textContent=(state.phase==="run"?"RUN ":"WALK ")+fmt(state.phaseElapsed)+" / "+fmt(phaseTotal);
+  $("cycleText").textContent=(state.phase==="run"?"RUN ":"WALK ")+fmt(state.phaseElapsed)+" / "+fmt(phaseTotal); $("progressBar").style.width=(Math.min(1,state.phaseElapsed/phaseTotal)*100)+"%";
   $("overall").textContent=fmt(state.totalActive);
   $("pauseBtn").textContent=state.paused?"▶ RESUME":"Ⅱ PAUSE";
   $("pauseBtn").className="action "+(state.paused?"resume":"");
@@ -118,7 +126,7 @@ $("startBtn").onclick=()=>{
   const r=Math.max(1,Number($("runMin").value)||5), w=Math.max(1,Number($("walkMin").value)||2);
   state={active:true,paused:false,phase:"run",runMs:r*60000,walkMs:w*60000,phaseElapsed:0,totalActive:0,phaseStartedAt:performance.now(),startedAt:new Date(),lastTick:performance.now(),cycle:1};
   $("setup").style.display="none"; $("running").style.display="flex"; $("started").textContent=clockFmt(state.startedAt);
-  render(); speak("Start Running"); cancelAnimationFrame(timer); timer=requestAnimationFrame(tick);
+  render(); speak("Start Running"); keepScreenAwake(); cancelAnimationFrame(timer); timer=requestAnimationFrame(tick);
 };
 
 $("pauseBtn").onclick=()=>{
@@ -129,7 +137,12 @@ $("pauseBtn").onclick=()=>{
 };
 $("endBtn").onclick=()=>{
   if(!state.active)return;
-  state.active=false; cancelAnimationFrame(timer); speak("Run Ended");
+  $("endConfirm").style.display="flex";
+};
+$("cancelEnd").onclick=()=>{$("endConfirm").style.display="none"};
+$("confirmEnd").onclick=()=>{
+  state.active=false; cancelAnimationFrame(timer); releaseScreenAwake(); speak("Run Ended");
+  $("endConfirm").style.display="none";
   $("summary").innerHTML=`Overall active time: <strong>${fmt(state.totalActive)}</strong><br>Run/Walk intervals completed: <strong>${Math.max(0,state.cycle-(state.phase==="run"?1:0))}</strong>`;
   $("modal").style.display="flex";
 };
@@ -137,6 +150,32 @@ $("closeBtn").onclick=()=>{
   $("modal").style.display="none"; $("running").style.display="none"; $("setup").style.display="flex";
   state={active:false,paused:false}; render();
 };
+
+let wakeLock = null;
+async function keepScreenAwake(){
+  try{
+    if("wakeLock" in navigator && state.active && document.visibilityState === "visible"){
+      wakeLock = await navigator.wakeLock.request("screen");
+    }
+  }catch(e){}
+}
+async function releaseScreenAwake(){
+  try{ if(wakeLock){ await wakeLock.release(); wakeLock=null; } }catch(e){}
+}
+document.addEventListener("visibilitychange",()=>{
+  if(!state.active)return;
+  if(document.visibilityState==="hidden"){
+    // Best-effort only: iOS may suspend speech immediately after backgrounding.
+    speak("Screen Minimised");
+  }else{
+    state.lastTick=performance.now();
+    keepScreenAwake();
+  }
+});
+window.addEventListener("pagehide",()=>{
+  if(state.active) speak("Screen Minimised");
+});
+
 if("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(()=>{});
 </script>
 </body>
